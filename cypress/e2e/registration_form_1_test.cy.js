@@ -17,7 +17,7 @@ Assignment 2:
  */
 
 describe('This is first test suite, Andres Raev', () => {
-    //Todays date: 12.06.2023-1
+    //Todays date: 12.06.2023
     it('User can submit data only when valid mandatory values are added', () => {
         cy.get('[data-testid="phoneNumberTestId"]').type('555666777')
         cy.get('input[name="password"]').type('MinuParool')
