@@ -20,6 +20,8 @@ describe('This is first test suite, Andres Raev', () => {
     //Todays date: 12.06.2023
     it('User can submit data only when valid mandatory values are added', () => {
         cy.get('[data-testid="phoneNumberTestId"]').type('555666777')
+        cy.get('input[name="firstName"]').type('Andres') //Selector to find firstName input field
+        cy.get('input[name="lastName').type('Perekonnanimi') //Selector to find lastName input field
         cy.get('input[name="password"]').type('MinuParool')
         cy.get('[name="confirm"]').type('MinuParool')
         cy.get('#username').type('Something')
@@ -98,21 +100,72 @@ describe('This is first test suite, Andres Raev', () => {
         // Add test, similar to previous one with phone number field not filled in
         // All other fields should be entered correctly
         // Assert that submit button is not enabled and that successful message is not visible
+        cy.get('#username').type('Andres')
+        cy.get('input[name="password"]').type('MyPass')
+        cy.get('[name="confirm"]').type('MyPass')
+
+        // Scroll to bottom
+        cy.window().scrollTo('bottom')  
+        //in order to activate submit button, user has to click somewhere outside the input field
+        cy.get('h2').contains('Password').click()
+
+        // Asserting that Submit button is disabled
+        cy.get('.submit_button').should('be.disabled')
+
+        // Assert that success message is not visible
+        cy.get('#success_message').should('not.be.visible')
+        
     })
 
     it('User cannot submit data when password and/or confirmation password is absent', () => {
         // Add test, similar to previous one with password field not filled in
         // All other fields should be entered correctly
         // Assert that submit button is not enabled and that successful message is not visible
+        cy.get('#username').type('Andres')
+        cy.get('input[name="password"]').type('MyPass')
+        cy.get('[data-testid="phoneNumberTestId"]').type('10203040')
+        //cy.get('input[id="phoneNumber"]').type('10203040') works the same way as above
+
+        // Scroll to bottom
+        cy.window().scrollTo('bottom')  
+        //in order to activate submit button, user has to click somewhere outside the input field
+        cy.get('h2').contains('Password').click()
+
+        // Asserting that Submit button is disabled
+        cy.get('.submit_button').should('be.disabled')
+
+        // Assert that success message is not visible
+        cy.get('#success_message').should('not.be.visible')
+        
     })
 
     it('User cannot add letters to phone number', () => {
         // Next verification is given as example
-        // how we can check from html code, that phone number should contain only numbers
-        cy.get('[data-testid="phoneNumberTestId"]').should('have.attr', 'type', 'number')
-
         // Add steps, when all fields are correctly filled in, except phone number
         // Try typing letters to phone number field
         // Assert that submit button is not enabled and that successful message is not visible
+        cy.get('#username').type('Andres')
+        cy.get('input[name="password"]').type('MyPass')
+        cy.get('[name="confirm"]').type('MyPass')
+        cy.get('[data-testid="phoneNumberTestId"]').type('Cerebrum Hub')
+        //cy.get('input[id="phoneNumber"]').type('Cerebrum Hub') //works the same way as above
+
+
+        //in order to activate submit button, user has to click somewhere outside the input field
+        cy.get('h2').contains('Password').click()
+
+        // Scroll to bottom
+        cy.window().scrollTo('bottom')  
+        
+        // Asserting that Submit button is disabled
+        cy.get('.submit_button').should('be.disabled')
+
+        // Assert that success message is not visible
+        cy.get('#success_message').should('not.be.visible')
+
+        // how we can check from html code, that phone number should contain only numbers
+        cy.get('[data-testid="phoneNumberTestId"]').should('have.attr', 'type', 'number')
+
+
     })
 })
