@@ -147,6 +147,7 @@ describe('This is first test suite, Andres Raev', () => {
         cy.get('#username').type('Andres')
         cy.get('input[name="password"]').type('MyPass')
         cy.get('[name="confirm"]').type('MyPass')
+        cy.get('[data-testid="phoneNumberTestId"]').should('have.attr', 'type', 'number')
         cy.get('[data-testid="phoneNumberTestId"]').type('Cerebrum Hub')
         //cy.get('input[id="phoneNumber"]').type('Cerebrum Hub') //works the same way as above
 
@@ -164,7 +165,6 @@ describe('This is first test suite, Andres Raev', () => {
         cy.get('#success_message').should('not.be.visible')
 
         // how we can check from html code, that phone number should contain only numbers
-        cy.get('[data-testid="phoneNumberTestId"]').should('have.attr', 'type', 'number')
 
 
     })
