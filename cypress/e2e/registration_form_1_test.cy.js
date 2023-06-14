@@ -64,7 +64,7 @@ describe('This is first test suite, Andres Raev', () => {
         cy.get('input[name="confirm"]').should('have.attr', 'title', 'Both passwords should match')
     })
 
-    it('User cannot submit data when username is absent', () => {
+    it.only('User cannot submit data when username is absent', () => {
         cy.get('[data-testid="phoneNumberTestId"]').type('10203040')
         cy.get('input[name="password"]').type('MyPass')
         cy.get('[name="confirm"]').type('MyPass')
@@ -90,6 +90,8 @@ describe('This is first test suite, Andres Raev', () => {
         // none = not visible; block = visible
         cy.get('#input_error_message').should('be.visible')
         cy.get('#input_error_message').should('have.css', 'display', 'block')
+        // Extra check - check that input has red box-shadow
+        cy.get('#username').should('have.css', 'box-shadow', 'rgb(255, 0, 0) 0px 0px 5px 1px')
     })
 
     /*
