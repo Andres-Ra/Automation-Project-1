@@ -64,7 +64,7 @@ describe('This is first test suite, Andres Raev', () => {
         cy.get('input[name="confirm"]').should('have.attr', 'title', 'Both passwords should match')
     })
 
-    it.only('User cannot submit data when username is absent', () => {
+    it('User cannot submit data when username is absent', () => {
         cy.get('[data-testid="phoneNumberTestId"]').type('10203040')
         cy.get('input[name="password"]').type('MyPass')
         cy.get('[name="confirm"]').type('MyPass')
