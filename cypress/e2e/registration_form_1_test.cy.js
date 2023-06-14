@@ -101,6 +101,8 @@ describe('This is first test suite, Andres Raev', () => {
         // All other fields should be entered correctly
         // Assert that submit button is not enabled and that successful message is not visible
         cy.get('#username').type('Andres')
+        cy.get('input[name="firstName"]').type('Andres') //Selector to find firstName input field
+        cy.get('input[name="lastName').type('Perekonnanimi') //Selector to find lastName input field
         cy.get('input[name="password"]').type('MyPass')
         cy.get('[name="confirm"]').type('MyPass')
 
@@ -121,6 +123,8 @@ describe('This is first test suite, Andres Raev', () => {
         // Add test, similar to previous one with password field not filled in
         // All other fields should be entered correctly
         // Assert that submit button is not enabled and that successful message is not visible
+        cy.get('input[name="firstName"]').type('Andres') //Selector to find firstName input field
+        cy.get('input[name="lastName').type('Perekonnanimi') //Selector to find lastName input field
         cy.get('#username').type('Andres')
         cy.get('input[name="password"]').type('MyPass')
         cy.get('[data-testid="phoneNumberTestId"]').type('10203040')
@@ -145,6 +149,8 @@ describe('This is first test suite, Andres Raev', () => {
         // Try typing letters to phone number field
         // Assert that submit button is not enabled and that successful message is not visible
         cy.get('#username').type('Andres')
+        cy.get('input[name="firstName"]').type('Andres') //Selector to find firstName input field
+        cy.get('input[name="lastName').type('Perekonnanimi') //Selector to find lastName input field
         cy.get('input[name="password"]').type('MyPass')
         cy.get('[name="confirm"]').type('MyPass')
         cy.get('[data-testid="phoneNumberTestId"]').should('have.attr', 'type', 'number')
