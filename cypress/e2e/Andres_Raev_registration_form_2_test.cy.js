@@ -160,7 +160,7 @@ describe('Section 1: Functional tests', () => {
         // Advanced level how to check the content of the animals dropdown
         cy.get('#animal').find('option').then(options => {
             const actual = [...options].map(option => option.value)
-            expect(actual).to.deep.eq(['dog', 'cat', 'snake', 'hippo', 'spider', 'mouse']) //miks rida lõpetama ei pea?
+            expect(actual).to.deep.eq(['dog', 'cat', 'snake', 'hippo', 'spider', 'mouse'])
         })
         
         // Selecting one of cars (second choice)
@@ -346,7 +346,7 @@ describe('Section 2: Visual tests', () => {
     verify, that the link is clickable */
     /* NB! This works correctly only in Chrome!! */
 
-    it.only('Check second link', () => {
+    it('Check second link', () => {
 
         cy.get('nav').children().should('have.length', 2)
 
@@ -422,8 +422,35 @@ describe('Section 2: Visual tests', () => {
         })
     })
 
+    it('Animal dropdown is correct', () => {
+        // Here is an example how to explicitely create screenshot from the code
+        // Select second element and create screenshot for this area, and full page
+        cy.get('#animal').select(1).screenshot('Animal Dropdown')
+        cy.screenshot('Full page screenshot')
 
-    // Create test similar to previous one
+        // Here are given different solutions how to get the length of array of elements in Cars dropdown
+        // Next 2 lines of code do exactly the same!
+        cy.get('#animal').children().should('have.length', 6)
+        cy.get('#animal').find('option').should('have.length', 6)
+        
+        //Check  that second element in the dropdown has text Cat
+        cy.get('#animal').find('option').eq(1).should('have.text', 'Cat')
+        
+        // Advanced level how to check the content of the Animals dropdown
+        cy.get('#animal').find('option').then(options => {
+            const actual = [...options].map(option => option.value)
+            expect(actual).to.deep.eq(['dog', 'cat', 'snake', 'hippo', 'spider', 'mouse'])
+        })
+
+        // Advanced level how to check the content of the Animals dropdown (alternative from option text)
+        cy.get('#animal').find('option').then(options => {
+            const actual = [...options].map(option => option.text)
+            expect(actual).to.deep.eq(['Dog', 'Cat', 'Snake', 'Hippo', 'Cow', 'Horse'])
+
+        cy.log('Animal dropdown is correct')       
+
+        })    
+    })
 
 })
 
