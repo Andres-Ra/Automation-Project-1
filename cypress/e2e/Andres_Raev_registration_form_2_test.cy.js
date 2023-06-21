@@ -95,34 +95,15 @@ describe('Section 1: Functional tests', () => {
     
     it('User can submit form with all fields added', ()=>{
         // Add test steps for filling in ALL fields
-        // Add user
         cy.get('[data-testid="user"]').type('Testuser')
-        
-        // Check that in username field only text is allowed (tpye=text) and only text and numbers are allowed
         cy.get('[data-testid="user"]').should('have.attr', 'type', 'text').should('have.attr','pattern','[a-zA-Z0-9_]+')
-        
-        // Add e-mail
         cy.get('input[name="email"]').type('user@email.com')
-        
-        //Check that e-mail field input type is e-mail and field is correctly validated (pattern is checked for username; @ symbol; domain name; "." symbol, top-level domain, 2-4 characters)
         cy.get('input[name="email"]').should('have.attr', 'type', 'email').should('have.attr','pattern','[a-z0-9]+@[a-z0-9]+\\.[a-z]{2,4}$')
-        
-        // Add First name
         cy.get('[data-cy="name"]').type('firstname')
-        
-        //Check that first name field input type is text and field is correctly validated (pattern is checked for text symbols only)
         cy.get('[data-cy="name"]').should('have.attr', 'type', 'text').should('have.attr','pattern','[a-zA-Z]+')
-        
-        // Add Last name
         cy.get('[data-testid="lastNameTestId"]').type('lastname')
-        
-        // Check that last name field input type is text and field is correctly validated (pattern is checked for text symbols only)
         cy.get('[data-testid="lastNameTestId"]').should('have.attr', 'type', 'text').should('have.attr','pattern','[a-zA-Z]+')
-        
-        // Add Phone number
         cy.get('[data-testid="phoneNumberTestId"]').type('123456')
-        
-        //Check that phonenumber input type is number, and field maxlenght is 10
         cy.get('[data-testid="phoneNumberTestId"]').should('have.attr', 'type', 'number').should('have.attr','maxlength','10')
         
         // Array of found elements with given selector has 4 elements in total
@@ -192,34 +173,15 @@ describe('Section 1: Functional tests', () => {
         // Assert that submit button is enabled
         // Assert that after submitting the form system shows successful message
 
-        // Add username
         cy.get('[data-testid="user"]').type('Testuser')
-        
-        // Check that in username field only text is allowed (tpye=text) and only text and numbers are allowed
         cy.get('[data-testid="user"]').should('have.attr', 'type', 'text').should('have.attr','pattern','[a-zA-Z0-9_]+')
-        
-        // Add e-mail
         cy.get('input[name="email"]').type('user@email.com')
-        
-        //Check that e-mail field input type is e-mail and field is correctly validated (pattern is checked for username; @ symbol; domain name; "." symbol, top-level domain, 2-4 characters)
         cy.get('input[name="email"]').should('have.attr', 'type', 'email').should('have.attr','pattern','[a-z0-9]+@[a-z0-9]+\\.[a-z]{2,4}$')
-        
-        // Add First name
         cy.get('[data-cy="name"]').type('firstname')
-        
-        // Check that first name field input type is text and field is correctly validated (pattern is checked for text symbols only)
         cy.get('[data-cy="name"]').should('have.attr', 'type', 'text').should('have.attr','pattern','[a-zA-Z]+')
-        
-        // Add Last name
         cy.get('[data-testid="lastNameTestId"]').type('lastname')
-        
-        //Check that last name field input type is text and field is correctly validated (pattern is checked for text symbols only)
         cy.get('[data-testid="lastNameTestId"]').should('have.attr', 'type', 'text').should('have.attr','pattern','[a-zA-Z]+')
-        
-        // Add Phone number
         cy.get('[data-testid="phoneNumberTestId"]').type('123456')
-        
-        // Check that phonenumber input type is number, and field maxlenght is 10
         cy.get('[data-testid="phoneNumberTestId"]').should('have.attr', 'type', 'number').should('have.attr','maxlength','10')
 
         // Add password and confirmation
@@ -249,37 +211,15 @@ describe('Section 1: Functional tests', () => {
 
     it('Submit button is not enabled when mandatory data is missing', ()=>{
 
-        // Add username
+        // Added User, e-mail; last name; phone number. Missing First name
         cy.get('[data-testid="user"]').type('Testuser')
-        
-        // Check that in username field only text is allowed (tpye=text) and only text and numbers are allowed
         cy.get('[data-testid="user"]').should('have.attr', 'type', 'text').should('have.attr','pattern','[a-zA-Z0-9_]+')
-        
-        // Add e-mail
         cy.get('input[name="email"]').type('user@email.com')
-        
-        //Check that e-mail field input type is e-mail and field is correctly validated (pattern is checked for username; @ symbol; domain name; "." symbol, top-level domain, 2-4 characters)
         cy.get('input[name="email"]').should('have.attr', 'type', 'email').should('have.attr','pattern','[a-z0-9]+@[a-z0-9]+\\.[a-z]{2,4}$')
-        
-        // Don't Add First name, code is commented out
-        // cy.get('[data-cy="name"]').type('firstname')
-        
-        //Check that first name field input type is text and field is correctly validated (pattern must be in text format)
-        // cy.get('[data-cy="name"]').should('have.attr', 'type', 'text').should('have.attr','pattern','[a-zA-Z]+')
-        
-        // Add Last name
         cy.get('[data-testid="lastNameTestId"]').type('lastname')
-        
-        //Check that last name field input type is text and field is correctly validated (pattern must be in text format)
         cy.get('[data-testid="lastNameTestId"]').should('have.attr', 'type', 'text').should('have.attr','pattern','[a-zA-Z]+')
-        
-        // Add Phone number
         cy.get('[data-testid="phoneNumberTestId"]').type('123456')
-        
-        //Check that phonenumber input type is number, and field maxlenght is 10
         cy.get('[data-testid="phoneNumberTestId"]').should('have.attr', 'type', 'number').should('have.attr','maxlength','10')
-
-        // Add password and WRONG confirmation password
         cy.get('[name="password"]').type('MinuParool')
         cy.get('[name="confirm"]').type('MinuParool')
 
